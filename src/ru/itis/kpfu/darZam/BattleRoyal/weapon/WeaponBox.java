@@ -8,7 +8,7 @@ import java.util.List;
 public class WeaponBox {
 
     private final Image icon = new ImageIcon
-            ("/Users/danis_zam/IdeaProjects/BattleRoyal/src/ru/itis/kpfu/darZam/BattleRoyal/resources/image/box.png").getImage();
+            ("C:\\Users\\danis\\Desktop\\BattleRoyal\\BattleRoyal\\src\\ru\\itis\\kpfu\\darZam\\BattleRoyal\\resources\\image\\box.png").getImage();
 
     private List<WeaponItem> weaponItems;
 

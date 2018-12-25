@@ -9,15 +9,15 @@ import java.awt.*;
 
 public class Player {
 
-    private byte healthPoint;
-    private byte damage;
+    private int healthPoint;
+    private int damage;
     private WeaponItem weapon;
     private Image icon;
 
-    public Player(){
+    public Player() {
         healthPoint = 100;
         damage = 5;
-        icon = new ImageIcon("/Users/danis_zam/IdeaProjects/BattleRoyal/src/ru/itis/kpfu/darZam/BattleRoyal/resources/image/dino.png").getImage();
+        icon = new ImageIcon("C:\\Users\\danis\\Desktop\\BattleRoyal\\BattleRoyal\\src\\ru\\itis\\kpfu\\darZam\\BattleRoyal\\resources\\image\\dino.png").getImage();
 
     }
 
@@ -25,18 +25,18 @@ public class Player {
         return icon;
     }
 
-    public byte getHealthPoint() {
+    public int getHealthPoint() {
         return healthPoint;
     }
 
-    public byte getDamage() {
+    public int getDamage() {
         return damage;
     }
 
-    public void setHealthPoint(byte healthPoint) {
-        if (healthPoint>100) {
+    public void setHealthPoint(int healthPoint) {
+        if (healthPoint > 100) {
             this.healthPoint = 100;
-        } else{
+        } else {
             this.healthPoint = healthPoint;
         }
     }
@@ -45,10 +45,15 @@ public class Player {
         this.damage = damage;
     }
 
-    public void attack(){
+    public int attack() {
         if (weapon != null) {
-            weapon.shot();
+            if (weapon.getMagazine() < 0) {
+                weapon = null;
+                return 0;
+            }
+            return weapon.shot();
         }
+        return 0;
     }
 
     public WeaponItem getWeapon() {
@@ -59,21 +64,21 @@ public class Player {
         this.weapon = weapon;
     }
 
-    private byte addHealthPoints(byte b){
-        byte playerHp =(byte) (this.getHealthPoint() + b);
-        if (playerHp >=100){
-            this.setHealthPoint((byte)100);
-        }else {
+    private int addHealthPoints(int b) {
+        byte playerHp = (byte) (this.getHealthPoint() + b);
+        if (playerHp >= 100) {
+            this.setHealthPoint((byte) 100);
+        } else {
             this.setHealthPoint(playerHp);
         }
         return this.getHealthPoint();
     }
 
-    public byte health(HealthPropertie health) throws InterruptedException {
-        byte helthPointPerSecond =(byte) ( health.getHealthPoints() / health.getTimeToUse() );
-        byte hp = health.getHealthPoints();
+    public int health(HealthPropertie health) throws InterruptedException {
+        int helthPointPerSecond =  (health.getHealthPoints() / health.getTimeToUse());
+        int hp = health.getHealthPoints();
 
-        while (hp>0){
+        while (hp > 0) {
             addHealthPoints(helthPointPerSecond);
             hp -= helthPointPerSecond;
             Thread.sleep(100);

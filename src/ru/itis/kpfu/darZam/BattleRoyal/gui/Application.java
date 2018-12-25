@@ -35,9 +35,9 @@ public class Application {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.setVisible(false);
-                String[] str = new String[0];
-                GameScreen.main(str);
+                mainFrame.dispose();
+                StartPanel startPanel = new StartPanel();
+                startPanel.run();
             }
         });
         exit = new JButton("exit");
